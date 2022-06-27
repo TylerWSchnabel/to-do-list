@@ -5,6 +5,38 @@
     <title>To-Do-List</title>
   </head>
   <body>
+    <div class="main">
+        <div class="topNav">
+            <p class="pageTitle">To-Do List</p>
+        </div>
+        <div class="bottom">
+            <div id="left-bottom">
+                <p class="projects-head">Projects</p>
+                <div id="project-list">
+                    <p class="project-name">Default Project</p>
+                </div>
+                <button class="add-btn" id="add-project" onclick="newProject">New Project</button>
+            </div>
+            <div id="right-bottom">
+                <p class="project-name" id="project-name">First Project</p>
+                <ul class="item-list" id="item-list">
+
+                </ul>
+                <button class="add-btn" id="add-item" onclick="">Add Item</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="add-form-container" id="project-form">
+        <form class="add-form">
+            <label for="add-project-name" class="form-label">Project Name</label>
+            <input type="text" id="add-project-name">
+            <label for="add-project-description" class="form-label">Description</label>
+            <input type="text" id="add-project-description">
+            <button type="button" id="add-project-button">Add Project</button>
+        </form>
+        
+    </div>
     <script src="bundle.js"></script>
   </body>
 </html>
