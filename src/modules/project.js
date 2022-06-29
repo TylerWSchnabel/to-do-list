@@ -1,13 +1,14 @@
-import { CleanPlugin } from "webpack";
+
 
 class Project {
     constructor(title, description){
         this.title = title;
         this.description = description;
+        this.todoList = [];
     }
 
-    addItem(){
-
+    addItem(item){
+        this.todoList.push(item);
     }
 }
 

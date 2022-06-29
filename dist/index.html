@@ -13,15 +13,16 @@
             <div id="left-bottom">
                 <p class="projects-head">Projects</p>
                 <div id="project-list">
-                    <p class="project-name">Default Project</p>
+                    <div class="project-name">Default Project</div>
                 </div>
-                <button class="add-btn" id="add-project" onclick="newProject">New Project</button>
+                <button class="add-btn" id="add-project">New Project</button>
             </div>
             <div id="right-bottom">
-                <p class="project-name" id="project-name">First Project</p>
-                <ul class="item-list" id="item-list">
+                <p class="project-name" id="project-name">Default Project</p>
+                <p class="project-description" id="project-description">Description</p>
+                <div class="item-list" id="item-list">
 
-                </ul>
+                </div>
                 <button class="add-btn" id="add-item" onclick="">Add Item</button>
             </div>
         </div>
@@ -33,9 +34,31 @@
             <input type="text" id="add-project-name">
             <label for="add-project-description" class="form-label">Description</label>
             <input type="text" id="add-project-description">
-            <button type="button" id="add-project-button">Add Project</button>
+            <div class="formBtns">
+                <button type="button" class="form-button" id="add-project-button">Add Project</button>
+                <button type="button" class="form-button" id="close-project-form">Close Form</button>
+            </div>
         </form>
-        
+    </div>
+    <div class="add-form-container" id="item-form">
+        <form class="add-form">
+            <label for="add-item-name" class="form-label">To-do item</label>
+            <input type="text" id="add-item-name">
+            <label for="add-item-description" class="form-label">Description</label>
+            <input type="text" id="add-item-description">
+            <label for="add-item-priority" class="form-label">Priority</label>
+             <select id="add-item-priority">
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+            </select>
+            <label for="add-item-date" class="form-label">Date</label>
+            <input type="date" id="add-item-date">
+            <div class="formBtns">
+                <button type="button" class="form-button" id="add-item-button">Add Item</button>
+                <button type="button" class="form-button" id="close-item-form">Close Form</button>
+            </div>
+        </form>
     </div>
     <script src="bundle.js"></script>
   </body>

@@ -1,6 +1,5 @@
 
 
-
 body{
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
@@ -37,10 +36,20 @@ body{
     padding: 20px;
 }
 
+.projects-head, #project-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
 #project-list{
     display: grid;
     grid-template-columns: 1fr;
-
+    grid-template-rows: 2rem;
+    grid-auto-rows: 2rem;
+    padding-top: 2rem;
+    height: 15rem;
+    overflow: scroll;
+    margin-top: 2rem;
+    padding-bottom: 2rem;
 }
 
 #right-bottom{
@@ -48,12 +57,20 @@ body{
     padding: 20px;
 }
 
-.project-title{
-    list-style: none;
+.project-description{
+    font-style: italic;
+}
+
+#project-form{
+    display: none;
+    position: absolute;
+}
+#item-form{
+    display: none;
+    position: absolute;
 }
 
 .add-form-container{
-    position: absolute;
     left: 30%;  
     width: 40%;
     top: 30%;
@@ -61,6 +78,8 @@ body{
     background-color: rgb(127, 208, 255);
     align-items: center;
     justify-items: center;
+    border-radius: 8px;
+    border: 2px solid black;
 }
 
 .add-form{
@@ -74,12 +93,14 @@ body{
 
 }
 
-#add-project-name{
+#add-project-name, #add-item-name{
     height: 16px;
 }
 
-#add-project-button{
+.formBtns{
     grid-column: 1 / span 2;
     justify-self: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
 }
-
