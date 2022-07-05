@@ -2,13 +2,13 @@
 
 class Item {
 
-    constructor(title, description, dueDate, priority, notes, complete){
+    constructor(title, description, priority, dueDate, complete){
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
         this.priority = priority;
-        this.notes = notes;
         this.complete = complete;
+        this.complete = false;
 
         const markComplete = () => {
             if (complete === false){

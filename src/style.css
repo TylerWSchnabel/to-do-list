@@ -52,6 +52,28 @@ body{
     padding-bottom: 2rem;
 }
 
+.item-list {
+    display: grid;
+    grid-auto-rows: 3rem;
+    gap: 1rem;
+    height: 75%;
+    overflow: scroll;
+}
+
+.add-btn {
+    height: 3rem;
+    width: auto;
+    font-size: 1rem;
+    background-color: rgb(127, 208, 255);
+    border-radius: 10px;
+    border: 2px solid black;
+}
+#add-project {
+    position: absolute;
+    bottom: 2%;
+    left: 2%;
+}
+
 #right-bottom{
     background-color: rgb(251, 251, 251);
     padding: 20px;
@@ -70,6 +92,11 @@ body{
     position: absolute;
 }
 
+#edit-form{
+    display: none;
+    position: absolute;
+}
+
 .add-form-container{
     left: 30%;  
     width: 40%;
@@ -82,7 +109,7 @@ body{
     border: 2px solid black;
 }
 
-.add-form{
+.add-form, .edit-form{
     display: grid;
     height: 80%;
     width: 90%;
@@ -103,4 +130,50 @@ body{
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
+}
+
+.todoContainer {
+    border: 2px solid black;
+    border-radius: 8px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 8fr 1fr 1fr;
+    height: 3rem;
+}
+
+.todoComp {
+    justify-self: center;
+    align-self: center;
+}
+
+.todoBtn {
+    height: 1.5rem;
+    justify-self: center;
+    align-self: center;
+}
+
+#itemInfoContainer{
+    display: none;
+    position: absolute;
+    left: 30%;  
+    width: 40%;
+    top: 30%;
+    height: 40%;
+    background-color: rgb(127, 208, 255);
+    align-items: center;
+    justify-items: center;
+    border-radius: 8px;
+    border: 2px solid black;
+
+}
+
+#itemInfo {
+    display: grid;
+    height: 80%;
+    width: 90%;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr 1fr;
+    padding: 5%;
+    row-gap: 5%;
 }

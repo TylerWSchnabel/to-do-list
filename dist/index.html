@@ -13,17 +13,17 @@
             <div id="left-bottom">
                 <p class="projects-head">Projects</p>
                 <div id="project-list">
-                    <div class="project-name">Default Project</div>
+                    
                 </div>
-                <button class="add-btn" id="add-project">New Project</button>
+                <button class="add-btn" id="add-project">Add Project</button>
             </div>
             <div id="right-bottom">
-                <p class="project-name" id="project-name">Default Project</p>
-                <p class="project-description" id="project-description">Description</p>
+                <p class="project-name" id="project-name"></p>
+                <p class="project-description" id="project-description"></p>
                 <div class="item-list" id="item-list">
 
                 </div>
-                <button class="add-btn" id="add-item" onclick="">Add Item</button>
+                <button class="add-btn" id="add-item">Add Item</button>
             </div>
         </div>
     </div>
@@ -57,6 +57,42 @@
             <div class="formBtns">
                 <button type="button" class="form-button" id="add-item-button">Add Item</button>
                 <button type="button" class="form-button" id="close-item-form">Close Form</button>
+            </div>
+        </form>
+    </div>
+    <div id="itemInfoContainer">
+        <div id="itemInfo">
+            <p class="infoHeading">To-do Item:</p>
+            <p id="item-info-title"></p>
+            <p class="infoHeading">Description:</p>
+            <p id="item-info-description"></p>
+            <p class="infoHeading">Priority:</p>
+            <p id="item-info-priority"></p>
+            <p class="infoHeading">Due Date:</p>
+            <p id="item-info-date"></p>
+            <div class="formBtns">
+                <button type="button" class="form-button" id="edit-info">Edit</button>
+                <button type="button" class="form-button" id="close-info">Close</button>
+            </div>
+        </div>
+    </div>
+    <div class="add-form-container" id="edit-form">
+        <form class="edit-form">
+            <label for="edit-item-name" class="form-label">To-do item</label>
+            <input type="text" id="edit-item-name">
+            <label for="edit-item-description" class="form-label">Description</label>
+            <input type="text" id="edit-item-description">
+            <label for="edit-item-priority" class="form-label">Priority</label>
+             <select id="edit-item-priority">
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+            </select>
+            <label for="edit-item-date" class="form-label">Date</label>
+            <input type="date" id="edit-item-date">
+            <div class="formBtns">
+                <button type="button" class="form-button" id="edit-item-button">Done</button>
+                <button type="button" class="form-button" id="close-edit-form">Close Form</button>
             </div>
         </form>
     </div>
