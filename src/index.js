@@ -87,6 +87,7 @@ const create = (() => {
 })()
 
 let index = 0;
+let editIndex = '';
 
 const display = (() => {
     function displayProjectList() {
@@ -174,8 +175,11 @@ const display = (() => {
             editInfo.addEventListener('click', function(){
                 console.log(itemIndex);
                 displayEditForm(newItem);
+                editIndex = itemIndex
                 //console.log(pos.todoList[itemIndex]);
+                
             });
+            
 
         }
 
@@ -187,11 +191,7 @@ const display = (() => {
             editDescription.value = item.description;
             editPriority.value = item.priority;
             editDate.value = item.dueDate;
-            editButton.addEventListener('click',function(){
-                //console.log(itemIndex);
-                alter.editItem(item);
-                displayProject(index);
-            })
+            
         }
         function closeEditForm(){
             editForm.style.display = "none";
@@ -214,7 +214,11 @@ const display = (() => {
         
     }
     
-    
+    editButton.addEventListener('click',function(){
+        //console.log(itemIndex);
+        alter.editItem(editIndex);
+        displayProject(index);
+    })
 
     displayProjectList();
     displayProject(index);
@@ -263,11 +267,11 @@ const alter = (() => {
     }
 
     function editItem(i){
-        //console.log("editItem: " + i);
-        i.title = editName.value;
-        i.description = editDescription.value;
-        i.priority = editPriority.value;
-        i.dueDate = editDate.value;
+        console.log(i);
+        projectArr[index].todoList[i].title = editName.value;
+        projectArr[index].todoList[i].description = editDescription.value;
+        projectArr[index].todoList[i].priority = editPriority.value;
+        projectArr[index].todoList[i].dueDate = editDate.value;
         editForm.style.display = "none";
         editName.value = '';
         editDescription.value = '';
