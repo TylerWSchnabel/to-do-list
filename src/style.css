@@ -19,7 +19,12 @@ body{
     border-width: 2px;
     border-color: black;
     border-bottom-style: solid;
-    padding: 10px;
+    padding-left: 3rem;
+}
+
+.pageTitle{
+    font-size: 3rem;
+    font-weight: bolder;
 }
 
 .bottom {
@@ -50,6 +55,14 @@ body{
     overflow: scroll;
     margin-top: 2rem;
     padding-bottom: 2rem;
+    gap: 1rem;
+}
+
+.project-name {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    align-content: center;
+    justify-content: center;
 }
 
 .item-list {
@@ -72,6 +85,12 @@ body{
     position: absolute;
     bottom: 2%;
     left: 2%;
+}
+
+#add-item {
+    position: absolute;
+    bottom: 2%;
+    left: 26%;
 }
 
 #right-bottom{

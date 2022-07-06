@@ -43,8 +43,14 @@ let editDate = document.getElementById('edit-item-date');
 let editButton = document.getElementById('edit-item-button');
 let closeEdit = document.getElementById('close-edit-form');
 
-
 let projectArr = [];
+if(!localStorage.getItem('array')) {
+    projectArr = [];
+    
+  } else {
+    projectArr = JSON.parse(localStorage.array);
+  }
+
 const create = (() => {
     function createProject(){
         
@@ -54,6 +60,7 @@ const create = (() => {
         projectFormDescription.value='';
         projectFormContainer.style.display="none";
         display.displayProjectList();
+        localStorage.array = JSON.stringify(projectArr);
         
     }
     
@@ -66,7 +73,7 @@ const create = (() => {
         addItemDate.value = "";
         addItemPriority.value = "low";
         itemFormContainer.style.display="none";
-        
+        localStorage.array = JSON.stringify(projectArr);
         display.displayProject(index);
     }
 
@@ -90,6 +97,21 @@ const display = (() => {
             newProjectDiv.setAttribute('id', i);
             newProjectDiv.addEventListener('click', setPos);
             newProjectDiv.textContent = projectArr[i].title;
+            
+            let projectDel = document.createElement("button");
+            projectDel.setAttribute('class', 'todoBtn');
+            projectDel.textContent = "Delete";
+            projectDel.addEventListener('click', function(){
+                projectArr.splice(i, 1);
+                if (index === ''){
+                    displayAllItems();
+                } else{
+                    display.displayProject(projectIndex);
+                };
+                displayProjectList();
+                localStorage.array = JSON.stringify(projectArr);
+            });
+            newProjectDiv.appendChild(projectDel);
             projectList.appendChild(newProjectDiv);
         }
     }
@@ -130,9 +152,11 @@ const display = (() => {
             if (this.checked){
                 pos.todoList[itemIndex].complete = true;
                 todoItem.style.textDecoration = "line-through";
+                localStorage.array = JSON.stringify(projectArr);
             } else {
                 pos.todoList[itemIndex].complete = false;
                 todoItem.style.textDecoration = "none";
+                localStorage.array = JSON.stringify(projectArr);
             }
         })
         if (pos.todoList[itemIndex].complete === true){
@@ -144,12 +168,13 @@ const display = (() => {
         todoDel.setAttribute('class', 'todoBtn');
         todoDel.textContent = "Delete";
         todoDel.addEventListener('click', function(){
-                pos.todoList.splice(itemIndex, 1);
-                if (index === ''){
-                    displayAllItems();
-                } else{
-                    display.displayProject(projectIndex);
-                };
+            pos.todoList.splice(itemIndex, 1);
+            if (index === ''){
+                displayAllItems();
+            } else{
+                display.displayProject(projectIndex);
+            };
+            localStorage.array = JSON.stringify(projectArr);
         });
         let todoInfo = document.createElement('button');
         todoInfo.textContent = "Info";
@@ -176,11 +201,8 @@ const display = (() => {
             itemInfoDate.textContent = pos.todoList[itemIndex].dueDate;
             newItem = pos.todoList[itemIndex];
             editInfo.addEventListener('click', function(){
-                console.log(itemIndex);
                 displayEditForm(newItem);
-                editIndex = itemIndex
-                //console.log(pos.todoList[itemIndex]);
-                
+                editIndex = itemIndex    
             });
             
 
@@ -188,7 +210,6 @@ const display = (() => {
 
         function displayEditForm(item){
             itemInfoContainer.style.display = "none";
-            console.log(item);
             editForm.style.display = "block";
             editName.value = item.title;
             editDescription.value = item.description;
@@ -211,7 +232,6 @@ const display = (() => {
         for (let i=0; i < projectArr.length; i++){
             for (let j=0; j<projectArr[i].todoList.length; j++){
                 displayItem(i, j);
-                console.log(i + "   " + j);
             }
         }
         editInfo.style.display="none"
@@ -220,8 +240,8 @@ const display = (() => {
     }
     
     editButton.addEventListener('click',function(){
-        //console.log(itemIndex);
         alter.editItem(editIndex);
+        localStorage.array = JSON.stringify(projectArr);
         displayProject(index);
     })
     function closeEditForm(){
@@ -286,7 +306,6 @@ const alter = (() => {
     }
 
     function editItem(i){
-        console.log(i);
         projectArr[index].todoList[i].title = editName.value;
         projectArr[index].todoList[i].description = editDescription.value;
         projectArr[index].todoList[i].priority = editPriority.value;
