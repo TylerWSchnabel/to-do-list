@@ -139,7 +139,7 @@ const display = (() => {
         let todoContainer = document.createElement('div');
         todoContainer.setAttribute('class', 'todoContainer');
         let todoItem = document.createElement('p');
-        todoItem.innerText = pos.todoList[itemIndex].title;
+        todoItem.innerText = pos.todoList[itemIndex].title + " - " + pos.todoList[itemIndex].dueDate;
         let todoComp = document.createElement('input');
         todoComp.type = "checkbox";
         todoComp.setAttribute('class', "todoComp")

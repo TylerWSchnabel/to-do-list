@@ -126,6 +126,7 @@ body{
     justify-items: center;
     border-radius: 8px;
     border: 2px solid black;
+    box-shadow: 0 5px 5px black;
 }
 
 .add-form, .edit-form{
@@ -164,6 +165,8 @@ body{
 .todoComp {
     justify-self: center;
     align-self: center;
+    height: 1.5rem;
+    width: 1.5rem;
 }
 
 .todoBtn {
