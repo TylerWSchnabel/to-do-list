@@ -44,7 +44,7 @@ let editButton = document.getElementById('edit-item-button');
 let closeEdit = document.getElementById('close-edit-form');
 
 
-let projectArr = [{title: 'All Items', description: 'All items on list', todoList: []}];
+let projectArr = [];
 const create = (() => {
     function createProject(){
         
@@ -56,19 +56,11 @@ const create = (() => {
         display.displayProjectList();
         
     }
-    function addAllItems(){
-        projectArr[0].todoList = []
-        for (let i =1; i< projectArr.length; i++){
-            for (let j=0; j< projectArr[i].todoList.length; j++){
-                projectArr[0].todoList.push(projectArr[i].todoList[j]);
-            }
-        }
-    }
+    
 
     function createItem(){
         let newItem = new Item(addItemName.value, addItemDescription.value, addItemPriority.value, addItemDate.value);
         projectArr[index].todoList.push(newItem);
-        addAllItems();
         addItemName.value='';
         addItemDescription.value='';
         addItemDate.value = "";
@@ -86,7 +78,7 @@ const create = (() => {
     
 })()
 
-let index = 0;
+let index = '';
 let editIndex = '';
 
 const display = (() => {
@@ -115,11 +107,13 @@ const display = (() => {
         
         items.textContent = "";
         for (let i=0; i<pos.todoList.length; i++){
-            displayItem(i);
+            displayItem(index, i);
         }
+        addItemForm.style.display="block";
+        editInfo.style.display="block";
     }
-    function displayItem(itemIndex){
-        let pos = projectArr[index];
+    function displayItem(projectIndex, itemIndex){
+        let pos = projectArr[projectIndex];
         let todoContainer = document.createElement('div');
         todoContainer.setAttribute('class', 'todoContainer');
         let todoItem = document.createElement('p');
@@ -127,6 +121,11 @@ const display = (() => {
         let todoComp = document.createElement('input');
         todoComp.type = "checkbox";
         todoComp.setAttribute('class', "todoComp")
+        if (pos.todoList[itemIndex].complete === true){
+            todoComp.checked = true;
+        } else if (pos.todoList[itemIndex].complete === false){
+            todoComp.checked = false;
+        }
         todoComp.addEventListener('change', function(){
             if (this.checked){
                 pos.todoList[itemIndex].complete = true;
@@ -146,7 +145,11 @@ const display = (() => {
         todoDel.textContent = "Delete";
         todoDel.addEventListener('click', function(){
                 pos.todoList.splice(itemIndex, 1);
-                display.displayProject(index);
+                if (index === ''){
+                    displayAllItems();
+                } else{
+                    display.displayProject(projectIndex);
+                };
         });
         let todoInfo = document.createElement('button');
         todoInfo.textContent = "Info";
@@ -190,21 +193,8 @@ const display = (() => {
             editName.value = item.title;
             editDescription.value = item.description;
             editPriority.value = item.priority;
-            editDate.value = item.dueDate;
-            
+            editDate.value = item.dueDate;   
         }
-        function closeEditForm(){
-            editForm.style.display = "none";
-            editName.value = '';
-            editDescription.value = '';
-            editPriority.value = '';
-            editDate.value = '';
-
-        }
-        closeEdit.addEventListener('click', closeEditForm);
-
-        
-        
         
         todoContainer.appendChild(todoComp);
         todoContainer.appendChild(todoItem);
@@ -213,15 +203,39 @@ const display = (() => {
         items.appendChild(todoContainer);
         
     }
+
+    function displayAllItems(){
+        projectName.textContent="All To-dos";
+        projectDescription.textContent="All To-do items"
+        items.textContent = "";
+        for (let i=0; i < projectArr.length; i++){
+            for (let j=0; j<projectArr[i].todoList.length; j++){
+                displayItem(i, j);
+                console.log(i + "   " + j);
+            }
+        }
+        editInfo.style.display="none"
+        index=''
+        addItemForm.style.display = "none"
+    }
     
     editButton.addEventListener('click',function(){
         //console.log(itemIndex);
         alter.editItem(editIndex);
         displayProject(index);
     })
+    function closeEditForm(){
+        editForm.style.display = "none";
+        editName.value = '';
+        editDescription.value = '';
+        editPriority.value = '';
+        editDate.value = '';
 
+    }
+    closeEdit.addEventListener('click', closeEditForm);
+    document.getElementById('alltodos').addEventListener('click', displayAllItems);
     displayProjectList();
-    displayProject(index);
+    displayAllItems();
     return {displayProjectList, displayProject}
 })()
 
@@ -262,6 +276,11 @@ const openForm = (() => {
 
 const alter = (() => {
     function delItem(){
+        for (let i=0; i<projectArr[0].todoList.length; i++){
+            if (projectArr[0].todoList[i].title === projectArr[index].todoList[todoIndex]){
+                projectArr[0].todoList.splice(todoIndex, 1);
+            }
+        }
         projectArr[index].todoList.splice(todoIndex, 1);
         display.displayProject(index);
     }
